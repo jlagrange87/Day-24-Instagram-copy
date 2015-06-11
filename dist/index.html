@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="styles/styles.css">
+	<link rel="icon" 
+		type="image/png" 
+		href="images/IG_icon.ico">
+</head>
+<body>
+	<nav>
+		<a href="#imageView" class="click-form"><span class="glyphicon glyphicon-plus icon-border"></span></a>
+		<button style="float: right; margin-right: 3px; margin-top: 3px;" id="logout">Logout</button>
+		<div class="dropdown-form">
+			<form id="add-image-form">
+				<input type="text" id="image-url-input" placeholder="Image URL">
+				<div>
+				<textarea id="image-caption-input" placeholder="Caption"></textarea>
+				</div>
+				<button type="submit" id="addImage"><span id="photo-icon" class="glyphicon glyphicon-picture"></span>Add Image</button>
+			</form>
+			<button id="cancel">Cancel</button>
+		</div>
+	</nav>
+	<section id="regisration" class="page">
+		<button id="registerUser">Register Now</button>
+		<div>Already have an account?<button id="to-login">Login</button></div>
+	</section>
+	<section id="image-list" class="page">
+		
+	</section>
+
+	<script type="text/template" id="image-row-template">
+		<div class="image-row" data-cid="<%=model.cid%>">
+			<img src ="<%=model.get('url')%>" class='photos'>
+			<div class="image-caption">
+				<%=model.get('caption')%>
+			</div>
+			<div style="text-align: left; padding-left: 5px;">Comments  -  <button class="button-time button-<%=model.cid%>">Add Comment</button></div>
+			<div style="text-align: left; padding-left: 5px;"class="comment-list"></div>
+		</div>
+		<form class="comment-form" data-form-cid="<%=model.cid%>">
+				<input type="text" class="comment-input" id="comment-input-<%=model.cid%>">
+		</form>
+	</script>
+	<script type="text/template" id="comment-row-template">
+		<div class="comment-row">
+			<%= model.get("text")%>
+		</div>
+	</script>
+	<script type="text/javascript" src="scripts/combined.js"></script>
+</body>
+</html>

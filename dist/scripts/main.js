@@ -6,9 +6,9 @@ Backbone.$ = $;
 $(document).ready(function(){
 		var App = Backbone.Router.extend({
 		routes:{
-			"":     			 	"regisration",
+			"":     			 	"login",
 
-			"login": 				"login",
+			"regisration": 				"regisration",
 
 			"imageView": 			"imageView",
 
@@ -16,17 +16,16 @@ $(document).ready(function(){
 
 
 		},
-		regisration: function(){
-			$("nav").hide();
-			$(".page").hide();
-			$("#regisration").fadeIn(1000);
-
-		},
-
 		login: function(){
 			$("nav").hide();
 			$(".page").hide();
 			$("#login").fadeIn(1000);
+
+		},
+		regisration: function(){
+			$("nav").hide();
+			$(".page").hide();
+			$("#regisration").fadeIn(1000);
 
 		},
 		imageView: function(){
@@ -45,8 +44,8 @@ $(document).ready(function(){
 	});
 	var myRouter = new App();
 	Backbone.history.start();
-	$("#to-login").click(function(){
-		myRouter.navigate("imageView", {trigger: true});
+	$("#to-registration").click(function(){
+		myRouter.navigate("regisration", {trigger: true});
 	});
 	$("a.click-form").click(function() {
 		var form = $(".dropdown-form");
@@ -62,6 +61,8 @@ $(document).ready(function(){
 	var ImageModel = require("./models/ImageModel.js")
 	var CommentCollection = require("./collections/CommentCollection.js")
 	var CommentModel = require("./models/CommentModel.js")
+	var UserCollection = require('./collections/UserCollection.js');
+	var UserModel = require('./models/UserModel.js');
 
 	var imageRowBuilder =_.template($("#image-row-template").html());
 	var commentRowBuilder =_.template($("#comment-row-template").html());
@@ -88,7 +89,7 @@ $(document).ready(function(){
 	imageList.on("add", function(addedImage){
 		var imageHtml = imageRowBuilder({model: addedImage});
 		$("#image-list").append(imageHtml);
-		$(".button-"+addedImage.cid).click(function(){
+		$(".add-comment-"+addedImage.cid).click(function(){
 			$("#comment-input-"+addedImage.cid).slideDown("slow");
 
 		})

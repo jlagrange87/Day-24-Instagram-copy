@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Joshstagram</title>
 	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="styles/styles.css">
 	<link rel="icon" 
@@ -11,21 +11,48 @@
 <body>
 	<nav>
 		<a href="#imageView" class="click-form"><span class="glyphicon glyphicon-plus icon-border"></span></a>
-		<button style="float: right; margin-right: 3px; margin-top: 3px;" id="logout">Logout</button>
+		<h2>Joshstagram</h2>
+		<button id="logout">Logout</button>
 		<div class="dropdown-form">
 			<form id="add-image-form">
 				<input type="text" id="image-url-input" placeholder="Image URL">
 				<div>
-				<textarea id="image-caption-input" placeholder="Caption"></textarea>
+				<input id="image-caption-input" placeholder="Caption"></input>
 				</div>
 				<button type="submit" id="addImage"><span id="photo-icon" class="glyphicon glyphicon-picture"></span>Add Image</button>
 			</form>
 			<button id="cancel">Cancel</button>
 		</div>
 	</nav>
+	<section id="login" class="page">
+		<h1>Joshtsagram</h1>
+		<form id="login-form">
+			<input type="text" placeholder="username">
+			<input type="password" placeholder="password">
+			<div style="margin-top: 10px;">
+				<button id="login-button">Login</button>
+			</div>
+		</form>
+		<div class="login-error"></div>
+		<div>Don't have an account? - <button id="to-registration">Register Now!</button></div>
+	</section>
 	<section id="regisration" class="page">
-		<button id="registerUser">Register Now</button>
-		<div>Already have an account?<button id="to-login">Login</button></div>
+		<h1>Joshtsagram</h1>
+		<form id="registration-form">
+			<div>
+				<input type="text" id="username-reg" placeholder="username">
+			</div>
+			<div class="register-error-name"></div>
+			<div>
+				<input type="password" id="password-reg" placeholder="password">
+			</div>
+			<div class="register-error-pass"></div>
+			<div>
+				<input type="text" id="email-reg" placeholder="email">
+			</div>
+			<div class="register-error-email"></div>
+			<button id="register-button">Register</button>
+		</form>
 	</section>
 	<section id="image-list" class="page">
 		
@@ -33,11 +60,12 @@
 
 	<script type="text/template" id="image-row-template">
 		<div class="image-row" data-cid="<%=model.cid%>">
+			<div style="line-height: 45px; text-align: left; margin-left: 10px;"><a>Jlagrange</a></div>
 			<img src ="<%=model.get('url')%>" class='photos'>
 			<div class="image-caption">
 				<%=model.get('caption')%>
 			</div>
-			<div style="text-align: left; padding-left: 5px;">Comments  -  <button class="button-time button-<%=model.cid%>">Add Comment</button></div>
+			<div style="text-align: left; padding-left: 5px;">Comments  -  <button class="add-comment add-comment-<%=model.cid%>">Add Comment</button></div>
 			<div style="text-align: left; padding-left: 5px;"class="comment-list"></div>
 		</div>
 		<form class="comment-form" data-form-cid="<%=model.cid%>">

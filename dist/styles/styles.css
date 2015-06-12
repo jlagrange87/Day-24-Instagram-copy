@@ -1,18 +1,44 @@
+h1 {
+	margin: 40px auto;
+	text-align: center;
+	font-family: 'Brush Script MT', cursive;
+	font-size: 90px;
+}h2 {
+	margin-bottom: 5px;
+	margin-left: 20px;
+	color:white;
+	display: inline;
+	font-family: 'Brush Script MT', cursive;
+}
+a:hover{
+	text-decoration: none;
+	cursor:pointer;
+}
 #add-image-form{
 	text-align: center;
 }
 #image-url-input{
+	height: 30px;
+	border-radius: 5px;
+	border-style: none;
+	margin-top: 10px;
 	padding-left: 10px;
 	width:300px;
 	margin-bottom: 10px;
+	border-style: none;
 }
 #image-caption-input{
+	height: 30px;
+	border-radius: 5px;
+	border-style: none;
+	margin-top: 5px;
 	padding-left: 10px;
 	width:300px;
 	margin-bottom: 10px;
+	border-style: none;
 }
 .dropdown-form{
-	height:225px;
+	height:245px;
 	text-align: center;
 	display:none;
 }
@@ -52,10 +78,14 @@ body{
 nav{
 	padding-top: 5px;
 	padding-bottom: 5px;
-	padding-left: 30px;
+	padding-left: 15px;
 	background-color: #337AB7;
 }
+nav button{
+	border-style: none;
+}
 #addImage{
+	margin-bottom: 10px;
 	font-size: 15px;
 	color:white;
 	border-radius: 3px;
@@ -85,14 +115,89 @@ nav{
 	max-width: 650px;
 	display: none;
 }
-.button-time{
+.add-comment{
 	background-color: #337AB7;
 	color:white;
 	border-radius: 3px;
 	border-style: none;
 	font-size: 13px;
 }
-.button-time:hover{
+.add-comment:hover{
 	background-color: #082238;
 	transition: background-color ease .5s;
+}
+#login{
+	text-align: center;
+}
+#login-form input{
+	padding-left: 5px;
+	border-radius: 5px;
+	border-style: none;
+	margin:2px auto;
+	height: 30px;
+	width:200px;
+}
+#registration-form{
+	text-align: center;
+}
+#registration-form input{
+	padding-left: 5px;
+	border-radius: 5px;
+	border-style: none;
+	margin:4px auto;
+	height: 30px;
+	width:200px;
+}
+#login-button{
+	background-color: #337AB7;
+	color:white;
+	border-radius: 3px;
+	border-style: none;
+	width: 75px;
+	height:30px;
+}
+#login-button:hover{
+	background-color: #0057A2;
+
+}
+#register-button{
+	margin-top: 3px;
+	background-color: #337AB7;
+	color:white;
+	border-radius: 3px;
+	border-style: none;
+	width: 100px;
+	height:35px;
+}
+#register-button:hover{
+	background-color: #0057A2;
+
+}
+#to-registration{
+	margin-top: 10px;
+	background-color: #337AB7;
+	color:white;
+	border-radius: 3px;
+	border-style: none;
+	height:35px;
+}
+#to-registration:hover{
+	background-color: #0057A2;
+
+}
+#logout{ 
+	float: right; 
+	margin-right: 6px; 
+	margin-top: 6px;
+	color:white;
+	background-color: #337AB7;
+	border-style: none;
+	border-left-style: solid;
+	border-color: #0057A2;
+}
+@media(min-width: 640px){
+	h1{
+		font-size: 140px;
+	}
+
 }

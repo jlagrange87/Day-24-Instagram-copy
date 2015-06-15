@@ -8,7 +8,8 @@ module.exports = Backbone.Model.extend({
 	defaults: {
 		_id: null,
 		username: null,
-		password: null
+		password: null,
+		email: null
 	},
 	urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/josh-model-users',
 
@@ -23,7 +24,7 @@ module.exports = Backbone.Model.extend({
 			return 'Username must conly contain letters and numbers.';
 		}
 		else if(attr.password.length < 8) {
-			return 'Your password must be at least six characters.';
+			return 'Your password must be at least eight characters.';
 		}
 		return false;
 	}

@@ -26,9 +26,10 @@
 	</nav>
 	<section id="login" class="page">
 		<h1>Joshtsagram</h1>
+		<div id="login-error" style="color: red;"></div>
 		<form id="login-form">
-			<input type="text" placeholder="username">
-			<input type="password" placeholder="password">
+			<input type="text" id="login-username" placeholder="username">
+			<input type="password" id="login-password" placeholder="password">
 			<div style="margin-top: 10px;">
 				<button id="login-button">Login</button>
 			</div>
@@ -36,31 +37,27 @@
 		<div class="login-error"></div>
 		<div>Don't have an account? - <button id="to-registration">Register Now!</button></div>
 	</section>
-	<section id="regisration" class="page">
+	<section id="registration" class="page">
 		<h1>Joshtsagram</h1>
+		<div id="registration-error" style="color: red;"></div>
 		<form id="registration-form">
 			<div>
 				<input type="text" id="username-reg" placeholder="username">
 			</div>
-			<div class="register-error-name"></div>
 			<div>
 				<input type="password" id="password-reg" placeholder="password">
 			</div>
-			<div class="register-error-pass"></div>
 			<div>
 				<input type="text" id="email-reg" placeholder="email">
 			</div>
-			<div class="register-error-email"></div>
 			<button id="register-button">Register</button>
 		</form>
 	</section>
-	<section id="image-list" class="page">
-		
-	</section>
+	<section id="image-list" class="page"></section>
 
 	<script type="text/template" id="image-row-template">
 		<div class="image-row" data-cid="<%=model.cid%>">
-			<div style="line-height: 45px; text-align: left; margin-left: 10px;"><a>Jlagrange</a></div>
+			<div style="line-height: 45px; text-align: left; margin-left: 10px;"><a href="#jlagrange87">jlagrange87</a></div>
 			<img src ="<%=model.get('url')%>" class='photos'>
 			<div class="image-caption">
 				<%=model.get('caption')%>

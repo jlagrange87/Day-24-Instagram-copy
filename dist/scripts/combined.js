@@ -13428,13 +13428,12 @@ $(document).ready(function(){
 		routes:{
 			"":     			 	"login",
 
-			"regisration": 				"regisration",
+			"registration": 				"registration",
 
 			"imageView": 			"imageView",
 
 			"userProfile/:query": 	"userProfile",
-
-
+		
 		},
 		login: function(){
 			$("nav").hide();
@@ -13442,10 +13441,10 @@ $(document).ready(function(){
 			$("#login").fadeIn(1000);
 
 		},
-		regisration: function(){
+		registration: function(){
 			$("nav").hide();
 			$(".page").hide();
-			$("#regisration").fadeIn(1000);
+			$("#registration").fadeIn(1000);
 
 		},
 		imageView: function(){
@@ -13459,13 +13458,11 @@ $(document).ready(function(){
 			$("#userProfile").fadeIn(1000);
 
 		}
-
-
 	});
 	var myRouter = new App();
 	Backbone.history.start();
 	$("#to-registration").click(function(){
-		myRouter.navigate("regisration", {trigger: true});
+		myRouter.navigate("registration", {trigger: true});
 	});
 	$("a.click-form").click(function() {
 		var form = $(".dropdown-form");
@@ -13488,11 +13485,65 @@ $(document).ready(function(){
 	var commentRowBuilder =_.template($("#comment-row-template").html());
 	var imageList = new ImageCollection();
 	var commentList = new CommentCollection();
+	
 	imageList.fetch({
 		success: function(){
 			commentList.fetch();
 		}
 	});
+	var currentUserId = {};
+	var users = new UserCollection();
+	var loggedInUser = false;
+	users.fetch({ success: onUsersLoaded });
+
+	function onUsersLoaded(newlyFetchedCollection) {
+		$("#registration-form").on("submit", function(e) {
+			e.preventDefault();
+			$("#registration-error").html("");
+			var newUser = new UserModel({
+				username: $("#username-reg").val(),
+				password: $("#password-reg").val(),
+				email: $("#email-reg").val()
+			});
+			if(!newUser.isValid()) {
+				$("#registration-error").html(newUser.validationError);
+			}
+			else {
+				newUser.save();
+				myRouter.navigate("imageView", {trigger: true});
+			}
+
+		});
+
+		$("#login-form").on("submit", function(e) {
+			e.preventDefault();
+
+			$("#login-error").html("");
+			var currentUser = new UserModel({
+				username: $("#login-username").val(),
+				password: $("#login-password").val()
+			});
+			if(!currentUser.isValid()) {
+				$("#login-error").html(currentUser.validationError);
+			}
+			else {
+				loggedInUser = users.findWhere({
+					username: $("#login-username").val(),
+					password: $("#login-password").val(),
+
+				});
+				currentUserId.ID = loggedInUser.attributes._id;
+				console.log(currentUserId.ID)
+				if(loggedInUser) {
+					myRouter.navigate("imageView", {trigger: true});
+				}
+				else {
+					$("#login-error").html("Your username / password combination is incorrect.");
+				}
+			}
+
+		});
+	}
 
 	$("#add-image-form").submit(function(e){
 		e.preventDefault();
@@ -13559,7 +13610,8 @@ module.exports = Backbone.Model.extend({
 	defaults: {
 	_id:null,
 	url:null,
-	caption:null
+	caption:null,
+	user: null,
 	},
 	urlRoot:"https://tiny-pizza-server.herokuapp.com/collections/josh-model-photo-2",
 	idAttribute:"_id"
@@ -13575,7 +13627,8 @@ module.exports = Backbone.Model.extend({
 	defaults: {
 		_id: null,
 		username: null,
-		password: null
+		password: null,
+		email: null
 	},
 	urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/josh-model-users',
 
@@ -13590,7 +13643,7 @@ module.exports = Backbone.Model.extend({
 			return 'Username must conly contain letters and numbers.';
 		}
 		else if(attr.password.length < 8) {
-			return 'Your password must be at least six characters.';
+			return 'Your password must be at least eight characters.';
 		}
 		return false;
 	}
